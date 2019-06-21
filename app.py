@@ -19,8 +19,18 @@ def hello_world():
 
 @app.route('/menu')
 def menu():
-    info = {'sessionId': 'd'}
+    xmlapi = 'Z:/BIN/x64/zihao_xmlapi.log'
+    sessionId = None
+    with open(xmlapi, 'r') as f:
+        lines = f.readlines()
+        print(lines[-3:])
+        for line in lines[-10:]:
+            idx = line.find('SID:')
+            if idx != -1:
+                sessionId = line[idx+4: idx+36]
+
+    info = {'sessionId': sessionId}
     return jsonify(info)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3234, debug=False)
+    app.run(host='0.0.0.0', port=3234, debug=True)

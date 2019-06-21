@@ -15,3 +15,9 @@ docker run -p 4000:1234 zihowe/inserver-info
 visit `http://localhost:4000/`
 
 
+Enable debugger:
+add `debug=Ture` to `app.run` in app.py:
+```
+app.run(host='0.0.0.0', port=3234, debug=True)
+```
+Go to the web page, it will show you the error message when hit an error. You can use **PIN**(which will show when start flask server)to remote debug.
